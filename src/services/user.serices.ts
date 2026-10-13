@@ -1,5 +1,4 @@
 import type { UserRepository } from "../repositories/user.repo.js";
-import type { User } from "../types/users-types.js";
 
 
 export class UserService {
