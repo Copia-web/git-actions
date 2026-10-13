@@ -13,5 +13,5 @@ jobs:
     verify:
         uses: ./.github/workflows/node-ci.yml
         with:
-            node-version: '22'
+            node-version: '20'
 
