@@ -1,27 +1,47 @@
 name: Reusable Node CI
 
 on:
-  workflow_call: 
+  workflow_call:
     inputs:
       node-version:
-        description: Node.js version
+        description: Node.js version to use
         required: false
         type: string
-        default: '20'
+        default: '22'
+
+      app-directory:
+        description: Application directory
+        required: true
+        type: string
 
 jobs:
-   verify:
+  verify:
+    name: Verify Node.js application
     runs-on: ubuntu-22.04
 
-    steps:
-       - uses: actions/checkout@v4
+    defaults:
+      run:
+        working-directory: ${{ inputs.app-directory }}
 
-       - uses: actions/setup-node@v4
-         with:
-            node-version: ${{inputs.node-version}}
-            cache: npm
-    
-       - run: npm ci
-       - run: npm run lint
-       - run: npm run typecheck
-       - run: npm run build
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: npm
+          cache-dependency-path: ${{ inputs.app-directory }}/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
