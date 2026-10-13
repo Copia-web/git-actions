@@ -4,10 +4,10 @@ on:
   workflow_call: 
     inputs:
       node-version:
-      description: Node.js version
-      required: false
-      type: string
-      default: '22'
+        description: Node.js version
+        required: false
+        type: string
+        default: '22'
 
 jobs:
    verify:
@@ -23,5 +23,5 @@ jobs:
     
        - run: npm ci
        - run: npm run lint
-       - run: npm typecheck
+       - run: npm run typecheck
        - run: npm run build
