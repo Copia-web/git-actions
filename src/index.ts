@@ -8,6 +8,10 @@ app.get("/", (req, res) => {
     res.status(200).json({ message: "health check" })
 });
 
+app.get("/auth", (req, res) => {
+    res.status(200).send("authenticated!")
+})
+
 app.listen(2001, () => {
     console.log("app running on port 2001")
 })
