@@ -1,0 +1,17 @@
+name: CCI
+
+on:
+  push:
+   branches: [features/app2]
+  pull_request: 
+   branches: [features/app2]
+
+permissions:
+    contents: read
+
+jobs:
+    verify:
+        uses: ./.github/workflows/node-ci.yml
+        with:
+            node-version: '22'
+
