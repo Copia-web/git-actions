@@ -1,0 +1,12 @@
+
+# Default reviewers for repository changes
+* @your-org/backend-team
+
+# Authentication and authorization
+/src/auth/ @your-org/security-team
+
+# Database migrations and schema changes
+/db/migrations/ @your-org/database-team
+
+# GitHub Actions and CI/CD configuration
+/.github/workflows/ @your-org/platform-team
